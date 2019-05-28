@@ -70,8 +70,6 @@ namespace TesteImposto
             pedido.EstadoDestino = txtEstadoDestino.Text;
             pedido.NomeCliente = textBoxNomeCliente.Text;
 
-
-
             foreach (DataRow row in table.Rows)
             {
                 bool brinde = false;
@@ -89,9 +87,17 @@ namespace TesteImposto
                         ValorItemPedido = valor
                     });
             }
+            try
+            {
+                service.GerarNotaFiscal(pedido);
 
-            service.GerarNotaFiscal(pedido);
-            MessageBox.Show("Operação efetuada com sucesso");
+                MessageBox.Show("Operação efetuada com sucesso");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro! Error:"+ ex.Message);
+            }
+
 
             LimparCampos();
         }

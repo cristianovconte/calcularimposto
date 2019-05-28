@@ -25,7 +25,7 @@ namespace Imposto.Core.Domain
         public string NomeProduto { get; set; }
         public string CodigoProduto { get; set; }
         public double BaseCalculoIPI { get; set; }
-        public int AliquotaIPI { get; private set; }
+        public int AliquotaIPI { get; set; }
         public double ValorIPI
         {
             get
@@ -35,7 +35,7 @@ namespace Imposto.Core.Domain
         }
         public int Desconto
         {
-            get; private set;
+            get;  set;
         }
 
         public void AplicaDesconto(string estadoDestino)
