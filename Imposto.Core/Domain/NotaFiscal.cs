@@ -30,7 +30,6 @@ namespace Imposto.Core.Domain
             this.NumeroNotaFiscal = 99999;
             this.Serie = new Random().Next(Int32.MaxValue);
             this.NomeCliente = pedido.NomeCliente;
-
             this.EstadoDestino = pedido.EstadoDestino;
             this.EstadoOrigem = pedido.EstadoOrigem;
 

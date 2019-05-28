@@ -15,6 +15,8 @@ namespace TesteImposto
     public partial class FormImposto : Form
     {
         private Pedido pedido = new Pedido();
+        private string[] estados = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS",
+            "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO" };
 
         public FormImposto()
         {
@@ -52,23 +54,45 @@ namespace TesteImposto
             return table;
         }
 
-        private void buttonGerarNotaFiscal_Click(object sender, EventArgs e)
+        public bool ValidadarFormulario()
         {
             DataTable table = (DataTable)dataGridViewPedidos.DataSource;
 
             if (string.IsNullOrWhiteSpace(txtEstadoOrigem.Text) ||
-               string.IsNullOrWhiteSpace(txtEstadoDestino.Text) ||
-               string.IsNullOrWhiteSpace(textBoxNomeCliente.Text) ||
-               (table == null || (table != null && table.Rows.Count == 0)))
+              string.IsNullOrWhiteSpace(txtEstadoDestino.Text) ||
+              string.IsNullOrWhiteSpace(textBoxNomeCliente.Text) ||
+              (table == null || (table != null && table.Rows.Count == 0)))
             {
                 MessageBox.Show("Todos os campos são obrigatórios e deve existir ao menos um item no pedido.");
-                return;
+                return false;
             }
 
+            if(!estados.Contains(txtEstadoOrigem.Text))
+            {
+                MessageBox.Show("Estado de origem inválido.");
+                return false;
+            }
+
+            if (!estados.Contains(txtEstadoDestino.Text))
+            {
+                MessageBox.Show("Estado de destino inválido.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void buttonGerarNotaFiscal_Click(object sender, EventArgs e)
+        {
+            if (!ValidadarFormulario())
+                return;
+        
             NotaFiscalService service = new NotaFiscalService();
             pedido.EstadoOrigem = txtEstadoOrigem.Text;
             pedido.EstadoDestino = txtEstadoDestino.Text;
             pedido.NomeCliente = textBoxNomeCliente.Text;
+
+            DataTable table = (DataTable)dataGridViewPedidos.DataSource;
 
             foreach (DataRow row in table.Rows)
             {
@@ -95,7 +119,7 @@ namespace TesteImposto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro! Error:"+ ex.Message);
+                MessageBox.Show("Ocorreu um erro! Error:" + ex.Message);
             }
 
 

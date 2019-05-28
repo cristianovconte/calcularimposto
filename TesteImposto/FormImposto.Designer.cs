@@ -70,6 +70,7 @@
             // textBoxNomeCliente
             // 
             this.textBoxNomeCliente.Location = new System.Drawing.Point(95, 9);
+            this.textBoxNomeCliente.MaxLength = 300;
             this.textBoxNomeCliente.Name = "textBoxNomeCliente";
             this.textBoxNomeCliente.Size = new System.Drawing.Size(939, 20);
             this.textBoxNomeCliente.TabIndex = 3;
@@ -78,6 +79,7 @@
             // 
             this.txtEstadoOrigem.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEstadoOrigem.Location = new System.Drawing.Point(95, 31);
+            this.txtEstadoOrigem.MaxLength = 2;
             this.txtEstadoOrigem.Name = "txtEstadoOrigem";
             this.txtEstadoOrigem.Size = new System.Drawing.Size(939, 20);
             this.txtEstadoOrigem.TabIndex = 4;
@@ -86,6 +88,7 @@
             // 
             this.txtEstadoDestino.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEstadoDestino.Location = new System.Drawing.Point(95, 53);
+            this.txtEstadoDestino.MaxLength = 2;
             this.txtEstadoDestino.Name = "txtEstadoDestino";
             this.txtEstadoDestino.Size = new System.Drawing.Size(939, 20);
             this.txtEstadoDestino.TabIndex = 5;
